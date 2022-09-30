@@ -1,7 +1,8 @@
 package com.things.tothemovies.data.remote
 
+import com.things.tothemovies.data.remote.model.ApiDetails
+import com.things.tothemovies.data.remote.model.ApiSPaginatedSearch
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,17 +15,17 @@ interface TmdbApi {
     suspend fun getSearchResults(
         @Query(ApiParameters.QUERY) query: String,
         @Query(ApiParameters.PAGE) page: Int
-    ): ResponseBody
+    ): ApiSPaginatedSearch
 
     @GET(MOVIES_DETAILS)
     suspend fun getMovieDetails(
         @Path(MOVIE_ID) kitId: Int
-    ): ResponseBody
+    ): ApiDetails
 
     @GET(TV_SHOW_DETAILS)
     suspend fun getTvShowDetails(
         @Path(TV_SHOW_ID) kitId: Int
-    ): ResponseBody
+    ): ApiDetails
 
     companion object {
         var retrofitService: TmdbApi? = null

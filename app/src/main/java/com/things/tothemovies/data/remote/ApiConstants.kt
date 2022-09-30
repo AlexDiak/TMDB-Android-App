@@ -1,6 +1,6 @@
 package com.things.tothemovies.data.remote
 
-const val BASE_URL = "https://www.themoviedb.org/3/"
+const val BASE_URL = "https://api.themoviedb.org/3/"
 
 const val MOVIE_ID = "movieId"
 const val TV_SHOW_ID = "tvShowId"
@@ -11,7 +11,7 @@ const val TV_SHOW_DETAILS = "tv/{$TV_SHOW_ID}"
 
 object ApiParameters {
     const val API_KEY = "api_key"
-    const val KEY = ""
+    const val KEY = "6b2e856adafcc7be98bdf0d8b076851c"
     const val QUERY = "query"
     const val PAGE = "page"
 }
