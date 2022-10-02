@@ -2,14 +2,14 @@ package com.things.tothemovies.ui.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.things.tothemovies.data.remote.model.Result
 import com.things.tothemovies.databinding.RecyclerViewResultItemBinding
 import com.things.tothemovies.util.setImage
 
-class ResultsAdapter: ListAdapter<Result, ResultsAdapter.ResultsViewHolder>(ITEM_COMPARATOR) {
+class ResultsAdapter: PagingDataAdapter<Result, ResultsAdapter.ResultsViewHolder>(ITEM_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultsViewHolder {
         val binding = RecyclerViewResultItemBinding
@@ -19,8 +19,8 @@ class ResultsAdapter: ListAdapter<Result, ResultsAdapter.ResultsViewHolder>(ITEM
     }
 
     override fun onBindViewHolder(holder: ResultsViewHolder, position: Int) {
-        val item: Result = getItem(position)
-        holder.bind(item)
+        val item: Result? = getItem(position)
+        item?.let { holder.bind(it) }
     }
 
     inner class ResultsViewHolder(

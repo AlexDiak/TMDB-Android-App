@@ -12,10 +12,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.things.tothemovies.databinding.FragmentSearchBinding
 import com.things.tothemovies.util.UiText
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
@@ -67,12 +70,26 @@ class SearchFragment : Fragment() {
     }
 
     private fun observeViewStateUpdates(searchAdapter: ResultsAdapter) {
+
+        viewModel.results.observe(viewLifecycleOwner) {
+            searchAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
                 launch {
+                    searchAdapter.loadStateFlow.collect {
+                    if (it.append is LoadState.NotLoading && it.append.endOfPaginationReached) {
+                            searchAdapter.itemCount < 1
+                    }
+                }
+
+                }
+
+                launch {
                     viewModel.state.collect {
-                        searchAdapter.submitList(it)
+                        //searchAdapter.submitList(it)
                     }
                 }
 
@@ -110,13 +127,13 @@ class SearchFragment : Fragment() {
         searchView.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    viewModel.getSearchMultiResults(query.orEmpty())
+                    viewModel.getSearchResults(query.orEmpty())
                     searchView.clearFocus()
                     return true
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    viewModel.getSearchMultiResults(newText.orEmpty())
+                    viewModel.getSearchResults(newText.orEmpty())
                     return true
                 }
             }

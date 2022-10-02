@@ -45,7 +45,7 @@ class DetailsFragment : Fragment() {
                 launch {
                     viewModel.state.collect {
                         binding.photo.setImage(it?.poster_path)
-                        binding.genre.text = it?.genres?.get(0)?.name
+                        binding.genre.text = it?.genres?.getOrNull(0)?.name
                         binding.name.text = it?.name ?: it?.title
                         binding.summary.text = it?.overview
                     }
