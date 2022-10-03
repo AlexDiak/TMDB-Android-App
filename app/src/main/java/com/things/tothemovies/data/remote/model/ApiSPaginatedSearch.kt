@@ -1,5 +1,7 @@
 package com.things.tothemovies.data.remote.model
 
+import com.things.tothemovies.data.local.model.Show
+
 data class ApiSPaginatedSearch(
     val page: Int,
     val results: List<Result>,
@@ -27,11 +29,20 @@ data class Result(
     val poster_path: String,
     val profile_path: String,
     val release_date: String,
-    val title: String,
+    val title: String?,
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-)
+){
+    fun toShow(): Show {
+        return Show(
+            id = id,
+            title = title?:name,
+            posterPath = poster_path,
+            mediaType = media_type
+        )
+    }
+}
 
 data class KnownFor(
     val adult: Boolean,

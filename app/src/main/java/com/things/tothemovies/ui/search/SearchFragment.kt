@@ -1,26 +1,28 @@
 package com.things.tothemovies.ui.search
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.things.tothemovies.databinding.FragmentSearchBinding
 import com.things.tothemovies.util.UiText
-import kotlinx.coroutines.flow.collect
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     companion object {
@@ -52,6 +54,10 @@ class SearchFragment : Fragment() {
         observeViewStateUpdates(adapter)
 
         setupSearchViewListener()
+
+        binding.watchlistMode.setOnClickListener {
+            viewModel.setWatchlistMode((it as Chip).isChecked)
+        }
     }
 
     private fun setupRecyclerView(searchAdapter: ResultsAdapter) {
@@ -79,23 +85,14 @@ class SearchFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
                 launch {
-                    searchAdapter.loadStateFlow.collect {
-                    if (it.append is LoadState.NotLoading && it.append.endOfPaginationReached) {
-                            searchAdapter.itemCount < 1
-                    }
-                }
-
-                }
-
-                launch {
-                    viewModel.state.collect {
-                        //searchAdapter.submitList(it)
+                    searchAdapter.loadStateFlow.collectLatest {
+                        binding.progressBar.isVisible = it.refresh is LoadState.Loading
                     }
                 }
 
                 launch {
-                    viewModel.isLoading.collect {
-                        binding.progressBar.isVisible = it
+                    viewModel.watchListModeState.collect {
+                        binding.watchlistMode.isChecked = it
                     }
                 }
 
@@ -123,12 +120,10 @@ class SearchFragment : Fragment() {
     }
 
     private fun setupSearchViewListener() {
-        val searchView = binding.searchMulti
-        searchView.setOnQueryTextListener(
+        binding.searchMulti.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    viewModel.getSearchResults(query.orEmpty())
-                    searchView.clearFocus()
+                    binding.searchMulti.clearFocus()
                     return true
                 }
 

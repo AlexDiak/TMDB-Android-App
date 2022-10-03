@@ -37,4 +37,15 @@
         android:layout_marginTop="10dp"
         android:textSize="16sp"/>
 
+    <Button
+        android:id="@+id/addToWatchlist"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:textAllCaps="false"
+        android:text="+ Add to watchlist"
+        android:textSize="16sp"/>
+
 </LinearLayout>

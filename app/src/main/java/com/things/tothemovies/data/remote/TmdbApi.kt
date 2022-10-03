@@ -26,33 +26,4 @@ interface TmdbApi {
     suspend fun getTvShowDetails(
         @Path(TV_SHOW_ID) kitId: Int
     ): ApiDetails
-
-    companion object {
-        var retrofitService: TmdbApi? = null
-        fun getInstance(): TmdbApi {
-            if (retrofitService == null) {
-
-                val client = OkHttpClient.Builder()
-
-                client.retryOnConnectionFailure(true)
-                client.readTimeout(60, TimeUnit.SECONDS)
-                client.writeTimeout(60, TimeUnit.SECONDS)
-                client.addInterceptor(
-                    HttpLoggingInterceptor().apply {
-                        level = HttpLoggingInterceptor.Level.BODY
-                    }
-                )
-
-                client.addInterceptor(AuthenticationInterceptor())
-
-                val retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(client.build())
-                    .build()
-                retrofitService = retrofit.create(TmdbApi::class.java)
-            }
-            return retrofitService!!
-        }
-    }
 }

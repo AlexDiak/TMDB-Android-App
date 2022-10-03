@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.things.tothemovies.data.remote.model.Result
+import com.things.tothemovies.data.local.model.Show
 import com.things.tothemovies.databinding.RecyclerViewResultItemBinding
 import com.things.tothemovies.util.setImage
 
-class ResultsAdapter: PagingDataAdapter<Result, ResultsAdapter.ResultsViewHolder>(ITEM_COMPARATOR) {
+class ResultsAdapter: PagingDataAdapter<Show, ResultsAdapter.ResultsViewHolder>(ITEM_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultsViewHolder {
         val binding = RecyclerViewResultItemBinding
@@ -19,7 +19,7 @@ class ResultsAdapter: PagingDataAdapter<Result, ResultsAdapter.ResultsViewHolder
     }
 
     override fun onBindViewHolder(holder: ResultsViewHolder, position: Int) {
-        val item: Result? = getItem(position)
+        val item = getItem(position)
         item?.let { holder.bind(it) }
     }
 
@@ -27,11 +27,11 @@ class ResultsAdapter: PagingDataAdapter<Result, ResultsAdapter.ResultsViewHolder
         private val binding: RecyclerViewResultItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Result) {
+        fun bind(item: Show) {
             binding.name.text = item.title
-            binding.photo.setImage(item.poster_path)
+            binding.photo.setImage(item.posterPath)
             binding.root.setOnClickListener {
-                onClick?.invoke(item.media_type, item.id)
+                onClick?.invoke(item.mediaType, item.id)
             }
         }
     }
@@ -39,12 +39,12 @@ class ResultsAdapter: PagingDataAdapter<Result, ResultsAdapter.ResultsViewHolder
     var onClick: ((String, Int) -> Unit)? = null
 }
 
-private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<Result>() {
-    override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<Show>() {
+    override fun areItemsTheSame(oldItem: Show, newItem: Show): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+    override fun areContentsTheSame(oldItem: Show, newItem: Show): Boolean {
         return oldItem == newItem
     }
 }

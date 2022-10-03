@@ -1,52 +1,39 @@
 package com.things.tothemovies.data.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
-import com.things.tothemovies.R
+import com.things.tothemovies.data.local.dao.WatchlistDao
+import com.things.tothemovies.data.local.model.Show
 import com.things.tothemovies.data.remote.TmdbApi
-import com.things.tothemovies.data.remote.model.ApiSPaginatedSearch
-import com.things.tothemovies.data.remote.model.Result
-import com.things.tothemovies.data.repository.paging.ResultPagingSource
-import com.things.tothemovies.util.Resource
-import com.things.tothemovies.util.UiText
-import retrofit2.HttpException
-import java.io.IOException
+import com.things.tothemovies.data.paging.ResultPagingSource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
 
-class SearchRepository {
+class SearchRepository
+@Inject constructor(
+    private val api: TmdbApi,
+    private val watchlistDao: WatchlistDao
+) {
 
-    private val api = TmdbApi.getInstance()
+    fun getResults(query: String, watchlistMode: Boolean): Flow<PagingData<Show>> {
 
-    suspend fun getSearchResults(query: String,  pageToLoad: Int): Resource<ApiSPaginatedSearch>{
+        if(query.isEmpty() && !watchlistMode)
+            return MutableStateFlow(PagingData.empty())
 
-        return try {
-            val searchResult = api.getSearchResults(query,pageToLoad)
-            Resource.Success(data = searchResult)
-
-        } catch (e: IOException) {
-            Resource.Error(
-                uiText = UiText.StringResource(R.string.networkError)
-            )
-        } catch (e: HttpException) {
-            Resource.Error(
-                uiText = UiText.StringResource(R.string.networkError)
-            )
-        }
-    }
-
-    fun getResults(query: String) : LiveData<PagingData<Result>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 5,
+                pageSize = 20,
                 enablePlaceholders = false,
                 initialLoadSize = 1
             ),
             pagingSourceFactory = {
-                ResultPagingSource(api, query)
-            }
-            , initialKey = 1
-        ).liveData
+                ResultPagingSource(api, watchlistDao, query, watchlistMode)
+            }, initialKey = 1
+        ).flow
     }
 }

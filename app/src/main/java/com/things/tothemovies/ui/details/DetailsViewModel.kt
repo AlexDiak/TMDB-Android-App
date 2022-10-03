@@ -3,22 +3,26 @@ package com.things.tothemovies.ui.details
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.things.tothemovies.data.local.model.Show
 import com.things.tothemovies.data.remote.model.ApiDetails
 import com.things.tothemovies.data.repository.DetailsRepository
 import com.things.tothemovies.util.MOVIE
 import com.things.tothemovies.util.Resource
 import com.things.tothemovies.util.TV_SHOW
 import com.things.tothemovies.util.UiText
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
-
-    private val repository = DetailsRepository()
+@HiltViewModel
+class DetailsViewModel @Inject constructor(
+    private val repository: DetailsRepository,
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
     private val _state = MutableStateFlow<ApiDetails?>(null)
     val state = _state.asStateFlow()
@@ -75,6 +79,13 @@ class DetailsViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
                 }
             }
             _isLoading.emit(false)
+        }
+    }
+
+    fun addToWatchlist(id: Int, title: String, imgPath: String, mediaType: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            if(id!=-1)
+                repository.insert(Show(id, title, imgPath, mediaType))
         }
     }
 }

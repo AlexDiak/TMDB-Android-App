@@ -3,7 +3,7 @@
 
     <string name="networkError">Network error. Please check your internet connection.</string>
 
-    <string name="search_screen">Search Screen</string>
-    <string name="details_screen">Details Screen</string>
+    <string name="search_screen">Search</string>
+    <string name="details_screen">Details</string>
 
 </resources>
