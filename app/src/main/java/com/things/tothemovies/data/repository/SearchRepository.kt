@@ -8,10 +8,8 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.things.tothemovies.data.local.dao.WatchlistDao
 import com.things.tothemovies.data.local.model.Show
-import com.things.tothemovies.data.remote.TmdbApi
 import com.things.tothemovies.data.paging.ResultPagingSource
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.things.tothemovies.data.remote.TmdbApi
 import javax.inject.Inject
 
 class SearchRepository
@@ -20,10 +18,10 @@ class SearchRepository
     private val watchlistDao: WatchlistDao
 ) {
 
-    fun getResults(query: String, watchlistMode: Boolean): Flow<PagingData<Show>> {
+    fun getResults(query: String, watchlistMode: Boolean): LiveData<PagingData<Show>> {
 
         if(query.isEmpty() && !watchlistMode)
-            return MutableStateFlow(PagingData.empty())
+            return MutableLiveData(PagingData.empty())
 
         return Pager(
             config = PagingConfig(
@@ -34,6 +32,6 @@ class SearchRepository
             pagingSourceFactory = {
                 ResultPagingSource(api, watchlistDao, query, watchlistMode)
             }, initialKey = 1
-        ).flow
+        ).liveData
     }
 }

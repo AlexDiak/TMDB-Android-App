@@ -28,7 +28,7 @@ data class Result(
     val popularity: Double,
     val poster_path: String,
     val profile_path: String,
-    val release_date: String,
+    val release_date: String?,
     val title: String?,
     val video: Boolean,
     val vote_average: Double,
@@ -38,6 +38,7 @@ data class Result(
         return Show(
             id = id,
             title = title?:name,
+            year = release_date?:first_air_date,
             posterPath = poster_path,
             mediaType = media_type
         )

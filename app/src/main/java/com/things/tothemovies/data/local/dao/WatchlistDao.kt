@@ -10,8 +10,8 @@ interface WatchlistDao {
     @Query("SELECT * FROM show WHERE title LIKE '%' || :query || '%'")
     suspend fun findByTitle(query: String): List<Show>
 
-    @Query("SELECT * FROM show")
-    suspend fun getAll(): List<Show>
+    @Query("SELECT EXISTS(SELECT * FROM show WHERE id = :id)")
+    suspend fun showExists(id : Int) : Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(watchlistItem: Show)

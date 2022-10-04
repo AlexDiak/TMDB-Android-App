@@ -5,6 +5,7 @@ import com.things.tothemovies.data.local.dao.WatchlistDao
 import com.things.tothemovies.data.local.model.Show
 import com.things.tothemovies.data.remote.TmdbApi
 import com.things.tothemovies.data.remote.model.ApiDetails
+import com.things.tothemovies.data.remote.model.ApiVideos
 import com.things.tothemovies.util.Resource
 import com.things.tothemovies.util.UiText
 import retrofit2.HttpException
@@ -48,11 +49,48 @@ class DetailsRepository @Inject constructor(
         }
     }
 
+    suspend fun getMovieVideos(id: Int): Resource<ApiVideos> {
+        return try {
+            val movie = api.getMovieVideos(id)
+            Resource.Success(data = movie)
+
+        } catch (e: IOException) {
+            Resource.Error(
+                uiText = UiText.StringResource(R.string.networkError)
+            )
+        } catch (e: HttpException) {
+            Resource.Error(
+                uiText = UiText.StringResource(R.string.networkError)
+            )
+        }
+    }
+
+    suspend fun getTvShowVideos(id: Int): Resource<ApiVideos> {
+        return try {
+            val tvShow = api.getTvShowVideos(id)
+            Resource.Success(data = tvShow)
+
+        } catch (e: IOException) {
+            Resource.Error(
+                uiText = UiText.StringResource(R.string.networkError)
+            )
+        } catch (e: HttpException) {
+            Resource.Error(
+                uiText = UiText.StringResource(R.string.networkError)
+            )
+        }
+    }
+
     suspend fun insert(watchlistItem: Show) {
         watchlistDao.insert(watchlistItem)
     }
 
-    suspend fun delete(watchlistItem: Show) {
-        watchlistDao.delete(watchlistItem)
+    suspend fun delete(show: Show) {
+        watchlistDao.delete(show)
     }
+
+    suspend fun showExists(id: Int) : Boolean {
+        return watchlistDao.showExists(id)
+    }
+
 }

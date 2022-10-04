@@ -2,12 +2,8 @@ package com.things.tothemovies.data.remote
 
 import com.things.tothemovies.data.remote.model.ApiDetails
 import com.things.tothemovies.data.remote.model.ApiSPaginatedSearch
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.things.tothemovies.data.remote.model.ApiVideos
 import retrofit2.http.*
-import java.util.concurrent.TimeUnit
 
 interface TmdbApi {
 
@@ -17,13 +13,23 @@ interface TmdbApi {
         @Query(ApiParameters.PAGE) page: Int
     ): ApiSPaginatedSearch
 
-    @GET(MOVIES_DETAILS)
+    @GET(MOVIE_DETAILS)
     suspend fun getMovieDetails(
         @Path(MOVIE_ID) kitId: Int
     ): ApiDetails
+
+    @GET(MOVIE_VIDEOS)
+    suspend fun getMovieVideos(
+        @Path(MOVIE_ID) kitId: Int
+    ): ApiVideos
 
     @GET(TV_SHOW_DETAILS)
     suspend fun getTvShowDetails(
         @Path(TV_SHOW_ID) kitId: Int
     ): ApiDetails
+
+    @GET(TV_SHOW_VIDEOS)
+    suspend fun getTvShowVideos(
+        @Path(TV_SHOW_ID) kitId: Int
+    ): ApiVideos
 }

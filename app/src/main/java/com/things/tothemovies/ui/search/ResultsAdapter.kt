@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.things.tothemovies.data.local.model.Show
 import com.things.tothemovies.databinding.RecyclerViewResultItemBinding
+import com.things.tothemovies.util.getPosterPath
 import com.things.tothemovies.util.setImage
 
 class ResultsAdapter: PagingDataAdapter<Show, ResultsAdapter.ResultsViewHolder>(ITEM_COMPARATOR) {
@@ -29,7 +30,8 @@ class ResultsAdapter: PagingDataAdapter<Show, ResultsAdapter.ResultsViewHolder>(
 
         fun bind(item: Show) {
             binding.name.text = item.title
-            binding.photo.setImage(item.posterPath)
+            binding.year.text = item.year
+            binding.photo.setImage(getPosterPath(item.posterPath))
             binding.root.setOnClickListener {
                 onClick?.invoke(item.mediaType, item.id)
             }

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.things.tothemovies.data.local.model.Show
 import com.things.tothemovies.data.remote.model.ApiDetails
+import com.things.tothemovies.data.remote.model.ApiVideos
 import com.things.tothemovies.data.repository.DetailsRepository
 import com.things.tothemovies.util.MOVIE
 import com.things.tothemovies.util.Resource
@@ -27,8 +28,11 @@ class DetailsViewModel @Inject constructor(
     private val _state = MutableStateFlow<ApiDetails?>(null)
     val state = _state.asStateFlow()
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading = _isLoading.asStateFlow()
+    private val _stateVideos = MutableStateFlow<ApiVideos?>(null)
+    val stateVideos = _stateVideos.asStateFlow()
+
+    private val _showExists = MutableStateFlow(false)
+    val showExists = _showExists.asStateFlow()
 
     private val _eventFlow = Channel<UiText>()
     val eventFlow = _eventFlow.receiveAsFlow()
@@ -40,17 +44,25 @@ class DetailsViewModel @Inject constructor(
         val id = savedStateHandle.get<Int>("id")
         when (type) {
             MOVIE -> {
-                id?.let { getMovieDetails(it) }
+                id?.let {
+                    getMovieDetails(it)
+                    getMovieVideos(it)
+                }
             }
             TV_SHOW -> {
-                id?.let { getTvShowDetails(it) }
+                id?.let {
+                    getTvShowDetails(it)
+                    getTvShowVideos(it)
+                }
             }
         }
+
+        id?.let { showExists(it) }
     }
 
     private fun getMovieDetails(id: Int) {
         remoteSearchJob = viewModelScope.launch {
-            _isLoading.emit(true)
+
             when (val result = repository.getMovieDetails(id)) {
                 is Resource.Success -> {
                     _state.emit(result.data)
@@ -61,13 +73,28 @@ class DetailsViewModel @Inject constructor(
                     )
                 }
             }
-            _isLoading.emit(false)
+        }
+    }
+
+    private fun getMovieVideos(id: Int) {
+        remoteSearchJob = viewModelScope.launch {
+
+            when (val result = repository.getMovieVideos(id)) {
+                is Resource.Success -> {
+                    _stateVideos.emit(result.data)
+                }
+                is Resource.Error -> {
+                    _eventFlow.send(
+                        result.uiText ?: UiText.unknownError()
+                    )
+                }
+            }
         }
     }
 
     private fun getTvShowDetails(id: Int) {
         remoteSearchJob = viewModelScope.launch {
-            _isLoading.emit(true)
+
             when (val result = repository.getTvShowDetails(id)) {
                 is Resource.Success -> {
                     _state.emit(result.data)
@@ -78,14 +105,45 @@ class DetailsViewModel @Inject constructor(
                     )
                 }
             }
-            _isLoading.emit(false)
         }
     }
 
-    fun addToWatchlist(id: Int, title: String, imgPath: String, mediaType: String) {
+    private fun getTvShowVideos(id: Int) {
+        remoteSearchJob = viewModelScope.launch {
+
+            when (val result = repository.getTvShowVideos(id)) {
+                is Resource.Success -> {
+                    _stateVideos.emit(result.data)
+                }
+                is Resource.Error -> {
+                    _eventFlow.send(
+                        result.uiText ?: UiText.unknownError()
+                    )
+                }
+            }
+        }
+    }
+
+    fun addToWatchlist(id: Int, title: String, year: String, imgPath: String, mediaType: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            if(id!=-1)
-                repository.insert(Show(id, title, imgPath, mediaType))
+            if (id != -1) {
+                repository.insert(Show(id, title, year, imgPath, mediaType))
+                showExists(id)
+            }
+        }
+    }
+
+    fun removeFromWatchlist(show: Show) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.delete(show)
+            showExists(show.id)
+        }
+    }
+
+    private fun showExists(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            if (id != -1)
+                _showExists.emit(repository.showExists(id))
         }
     }
 }

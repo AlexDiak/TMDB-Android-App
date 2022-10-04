@@ -2,16 +2,13 @@ package com.things.tothemovies.ui.search
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.things.tothemovies.data.remote.model.Result
 import com.things.tothemovies.data.repository.SearchRepository
-import com.things.tothemovies.util.Resource
 import com.things.tothemovies.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,7 +26,7 @@ class SearchViewModel @Inject constructor(
     val eventFlow = _eventFlow.receiveAsFlow()
 
     val results = currentQuery.switchMap {
-        repository.getResults(it, watchListModeState.value).cachedIn(viewModelScope).asLiveData()
+        repository.getResults(it, watchListModeState.value).cachedIn(viewModelScope)
     }
 
     fun getSearchResults(query: String) {

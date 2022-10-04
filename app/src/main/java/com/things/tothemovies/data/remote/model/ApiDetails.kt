@@ -1,5 +1,7 @@
 package com.things.tothemovies.data.remote.model
 
+import com.things.tothemovies.data.local.model.Show
+
 data class ApiDetails(
     val adult: Boolean,
     val backdrop_path: String,
@@ -16,13 +18,13 @@ data class ApiDetails(
     val poster_path: String,
     val production_companies: List<ProductionCompany>,
     val production_countries: List<ProductionCountry>,
-    val release_date: String,
+    val release_date: String?,
     val revenue: Long,
     val runtime: Int,
     val spoken_languages: List<SpokenLanguage>,
     val status: String,
     val tagline: String,
-    val title: String,
+    val title: String?,
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int,
@@ -42,7 +44,17 @@ data class ApiDetails(
     val origin_country: List<String>,
     val original_name: String,
     val type: String
-)
+){
+    fun toShow(media_type: String): Show {
+        return Show(
+            id = id,
+            title = title?:name,
+            year = release_date?:first_air_date,
+            posterPath = poster_path,
+            mediaType = media_type
+        )
+    }
+}
 
 data class BelongsToCollection(
     val backdrop_path: String,

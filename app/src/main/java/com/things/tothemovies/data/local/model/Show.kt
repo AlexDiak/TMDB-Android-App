@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class Show(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "title") val title: String?,
+    @ColumnInfo(name = "year") val year: String?,
     @ColumnInfo(name = "img_path") val posterPath: String?,
     @ColumnInfo(name = "media_type") val mediaType: String
 )

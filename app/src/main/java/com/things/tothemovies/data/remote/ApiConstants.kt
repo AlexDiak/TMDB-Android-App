@@ -6,8 +6,10 @@ const val MOVIE_ID = "movieId"
 const val TV_SHOW_ID = "tvShowId"
 
 const val MULTI_SEARCH = "search/multi"
-const val MOVIES_DETAILS = "movie/{$MOVIE_ID}"
+const val MOVIE_DETAILS = "movie/{$MOVIE_ID}"
+const val MOVIE_VIDEOS = "movie/{$MOVIE_ID}/videos"
 const val TV_SHOW_DETAILS = "tv/{$TV_SHOW_ID}"
+const val TV_SHOW_VIDEOS = "tv/{$TV_SHOW_ID}/videos"
 
 object ApiParameters {
     const val API_KEY = "api_key"
