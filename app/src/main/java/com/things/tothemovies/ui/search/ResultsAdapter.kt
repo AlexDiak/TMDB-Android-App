@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.things.tothemovies.data.local.model.Show
 import com.things.tothemovies.databinding.RecyclerViewResultItemBinding
-import com.things.tothemovies.util.getPosterPath
-import com.things.tothemovies.util.setImage
+import com.things.tothemovies.utils.getPosterPath
+import com.things.tothemovies.utils.setImage
 
 class ResultsAdapter: PagingDataAdapter<Show, ResultsAdapter.ResultsViewHolder>(ITEM_COMPARATOR) {
 

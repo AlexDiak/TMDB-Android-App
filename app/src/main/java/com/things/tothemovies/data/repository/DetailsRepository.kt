@@ -6,8 +6,8 @@ import com.things.tothemovies.data.local.model.Show
 import com.things.tothemovies.data.remote.TmdbApi
 import com.things.tothemovies.data.remote.model.ApiDetails
 import com.things.tothemovies.data.remote.model.ApiVideos
-import com.things.tothemovies.util.Resource
-import com.things.tothemovies.util.UiText
+import com.things.tothemovies.utils.Resource
+import com.things.tothemovies.utils.UiText
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

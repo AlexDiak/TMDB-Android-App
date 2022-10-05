@@ -1,4 +1,4 @@
-package com.things.tothemovies.util
+package com.things.tothemovies.utils
 
 private const val BASE_POSTER_PATH = "https://image.tmdb.org/t/p/w500/"
 const val YOUTUBE_VIDEO_URL = "https://www.youtube.com/watch?v="

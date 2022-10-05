@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.things.tothemovies.databinding.FragmentSearchBinding
-import com.things.tothemovies.util.UiText
+import com.things.tothemovies.utils.UiText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

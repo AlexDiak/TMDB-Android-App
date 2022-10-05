@@ -1,4 +1,4 @@
-package com.things.tothemovies.util
+package com.things.tothemovies.utils
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

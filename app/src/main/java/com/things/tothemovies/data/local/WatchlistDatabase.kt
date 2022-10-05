@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.things.tothemovies.data.local.dao.WatchlistDao
 import com.things.tothemovies.data.local.model.Show
 
-@Database(entities = [Show::class], version = 1)
+@Database(entities = [Show::class], version = 1, exportSchema = false)
 abstract class WatchlistDatabase : RoomDatabase() {
     abstract fun watchlistDao(): WatchlistDao
 

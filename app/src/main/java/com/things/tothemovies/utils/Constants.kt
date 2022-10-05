@@ -1,4 +1,4 @@
-package com.things.tothemovies.util
+package com.things.tothemovies.utils
 
 const val TYPE = "type"
 const val MOVIE = "movie"

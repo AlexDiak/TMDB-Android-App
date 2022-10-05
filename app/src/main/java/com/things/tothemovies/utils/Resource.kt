@@ -1,4 +1,4 @@
-package com.things.tothemovies.util
+package com.things.tothemovies.utils
 
 sealed class Resource<T>(val data: T? = null, val uiText: UiText? = null) {
     class Success<T>(data: T?): Resource<T>(data)

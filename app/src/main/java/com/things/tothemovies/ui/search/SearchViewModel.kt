@@ -3,7 +3,7 @@ package com.things.tothemovies.ui.search
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
 import com.things.tothemovies.data.repository.SearchRepository
-import com.things.tothemovies.util.UiText
+import com.things.tothemovies.utils.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow

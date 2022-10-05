@@ -7,10 +7,10 @@ import com.things.tothemovies.data.local.model.Show
 import com.things.tothemovies.data.remote.model.ApiDetails
 import com.things.tothemovies.data.remote.model.ApiVideos
 import com.things.tothemovies.data.repository.DetailsRepository
-import com.things.tothemovies.util.MOVIE
-import com.things.tothemovies.util.Resource
-import com.things.tothemovies.util.TV_SHOW
-import com.things.tothemovies.util.UiText
+import com.things.tothemovies.utils.MOVIE
+import com.things.tothemovies.utils.Resource
+import com.things.tothemovies.utils.TV_SHOW
+import com.things.tothemovies.utils.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

@@ -1,4 +1,4 @@
-package com.things.tothemovies.util
+package com.things.tothemovies.utils
 
 import androidx.annotation.StringRes
 
@@ -8,7 +8,7 @@ sealed class UiText {
 
     companion object {
         fun unknownError(): UiText {
-            return UiText.DynamicString("Unknown Error")
+            return DynamicString("Unknown Error")
         }
     }
 }
