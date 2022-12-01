@@ -3,13 +3,20 @@ package com.things.tothemovies.data.remote
 import com.things.tothemovies.data.remote.model.ApiDetails
 import com.things.tothemovies.data.remote.model.ApiSPaginatedSearch
 import com.things.tothemovies.data.remote.model.ApiVideos
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface TmdbApi {
 
     @GET(MULTI_SEARCH)
     suspend fun getSearchResults(
         @Query(ApiParameters.QUERY) query: String,
+        @Query(ApiParameters.PAGE) page: Int
+    ): ApiSPaginatedSearch
+
+    @GET(TRENDING_MOVIES)
+    suspend fun getTrendingMovies(
         @Query(ApiParameters.PAGE) page: Int
     ): ApiSPaginatedSearch
 

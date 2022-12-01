@@ -51,7 +51,8 @@ data class ApiDetails(
             title = title?:name,
             year = release_date?:first_air_date,
             posterPath = poster_path,
-            mediaType = media_type
+            mediaType = media_type,
+            runtime = runtime
         )
     }
 }

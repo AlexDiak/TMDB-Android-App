@@ -15,8 +15,8 @@ class ResultPagingSource(
 
     override fun getRefreshKey(state: PagingState<Int, Show>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
-            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 
@@ -27,8 +27,14 @@ class ResultPagingSource(
             val shows = if (watchlistMode)
                 watchlistDao.findByTitle(query)
             else {
-                api.getSearchResults(query, position).results.map {
-                    it.toShow()
+                if(query.isBlank()){
+                    api.getTrendingMovies(position).results.map {
+                        it.toShow()
+                    }
+                }else{
+                    api.getSearchResults(query, position).results.map {
+                        it.toShow()
+                    }
                 }
             }
 

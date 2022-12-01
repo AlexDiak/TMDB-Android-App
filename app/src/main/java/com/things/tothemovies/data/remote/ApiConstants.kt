@@ -6,6 +6,7 @@ const val MOVIE_ID = "movieId"
 const val TV_SHOW_ID = "tvShowId"
 
 const val MULTI_SEARCH = "search/multi"
+const val TRENDING_MOVIES = "trending/movie/day"
 const val MOVIE_DETAILS = "movie/{$MOVIE_ID}"
 const val MOVIE_VIDEOS = "movie/{$MOVIE_ID}/videos"
 const val TV_SHOW_DETAILS = "tv/{$TV_SHOW_ID}"
