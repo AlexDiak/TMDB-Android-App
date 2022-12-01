@@ -4,6 +4,7 @@
     <string name="networkError">Network error. Please check your internet connection.</string>
 
     <string name="search_screen">Search</string>
+    <string name="watchlist_screen">Watchlist</string>
     <string name="details_screen">Details</string>
 
 </resources>

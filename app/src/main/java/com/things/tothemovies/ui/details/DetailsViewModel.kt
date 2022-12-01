@@ -15,7 +15,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -40,24 +42,24 @@ class DetailsViewModel @Inject constructor(
     private var remoteSearchJob: Job = Job()
 
     init {
-        val type = savedStateHandle.get<String>("type")
-        val id = savedStateHandle.get<Int>("id")
+        val type = checkNotNull(savedStateHandle["type"])
+        val id = checkNotNull(savedStateHandle["id"]).toString().toInt()
         when (type) {
             MOVIE -> {
-                id?.let {
+                id.let {
                     getMovieDetails(it)
                     getMovieVideos(it)
                 }
             }
             TV_SHOW -> {
-                id?.let {
+                id.let {
                     getTvShowDetails(it)
                     getTvShowVideos(it)
                 }
             }
         }
 
-        id?.let { showExists(it) }
+        id.let { showExists(it) }
     }
 
     private fun getMovieDetails(id: Int) {

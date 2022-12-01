@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.things.tothemovies.data.local.dao.WatchlistDao
 import com.things.tothemovies.data.local.model.Show
 
-@Database(entities = [Show::class], version = 1, exportSchema = false)
+@Database(entities = [Show::class], version = 2, exportSchema = false)
 abstract class WatchlistDatabase : RoomDatabase() {
     abstract fun watchlistDao(): WatchlistDao
 
@@ -18,6 +18,7 @@ abstract class WatchlistDatabase : RoomDatabase() {
         fun getInstance(context: Context): WatchlistDatabase {
             return instance ?: synchronized(this) {
                 return Room.databaseBuilder(context, WatchlistDatabase::class.java, DATABASE_NAME)
+                    .fallbackToDestructiveMigration()
                     .build()
             }
         }

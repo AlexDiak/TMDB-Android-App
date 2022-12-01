@@ -10,5 +10,6 @@ data class Show(
     @ColumnInfo(name = "title") val title: String?,
     @ColumnInfo(name = "year") val year: String?,
     @ColumnInfo(name = "img_path") val posterPath: String?,
-    @ColumnInfo(name = "media_type") val mediaType: String
+    @ColumnInfo(name = "media_type") val mediaType: String,
+    @ColumnInfo(name = "runtime") val runtime: Int = -1
 )
