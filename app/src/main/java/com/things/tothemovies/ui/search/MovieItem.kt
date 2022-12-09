@@ -27,20 +27,28 @@ fun MovieItem(show: Show, onShowDetails: () -> Unit) {
         Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .clip(shape = RoundedCornerShape(10.dp))
+            .clip(shape = RoundedCornerShape(topEnd = 10.dp, topStart = 10.dp))
     ) {
         Column(
             modifier = Modifier
                 .clickable { onShowDetails() }
         ) {
-            MovieImage(
-                getPosterPath(show.posterPath),
-                modifier = Modifier.fillMaxWidth()
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(getPosterPath(show.posterPath),)
+                    .crossfade(true)
+                    .build(),
+                modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(10.dp)),
+                contentDescription = "",
+                contentScale = ContentScale.FillWidth
             )
 
             Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
-                MovieTitle(
-                    show.title.toString()
+                Text(
+                    text = show.title.toString(),
+                    maxLines = 1,
+                    style = MaterialTheme.typography.subtitle1,
+                    overflow = TextOverflow.Ellipsis
                 )
                 Text(
                     text = show.year?.split("-")
@@ -51,34 +59,4 @@ fun MovieItem(show: Show, onShowDetails: () -> Unit) {
             }
         }
     }
-}
-
-@Composable
-fun MovieImage(
-    imageUrl: String,
-    modifier: Modifier = Modifier
-) {
-    AsyncImage(
-        model = ImageRequest.Builder(LocalContext.current)
-            .data(imageUrl)
-            .crossfade(true)
-            .build(),
-        modifier = modifier.clip(RoundedCornerShape(10.dp)),
-        contentDescription = "",
-        contentScale = ContentScale.FillWidth
-    )
-}
-
-@Composable
-fun MovieTitle(
-    title: String,
-    modifier: Modifier = Modifier
-) {
-    Text(
-        modifier = modifier,
-        text = title,
-        maxLines = 1,
-        style = MaterialTheme.typography.subtitle1,
-        overflow = TextOverflow.Ellipsis
-    )
 }

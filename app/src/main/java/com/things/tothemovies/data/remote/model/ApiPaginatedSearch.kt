@@ -2,7 +2,7 @@ package com.things.tothemovies.data.remote.model
 
 import com.things.tothemovies.data.local.model.Show
 
-data class ApiSPaginatedSearch(
+data class ApiPaginatedSearch(
     val page: Int,
     val results: List<Result>,
     val total_pages: Int,

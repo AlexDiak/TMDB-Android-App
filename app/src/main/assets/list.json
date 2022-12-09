@@ -1,0 +1,439 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/sNLP0dLZcVBqYa3MchCXJqgDtFb.jpg",
+      "id": 119051,
+      "name": "Wednesday",
+      "original_language": "en",
+      "original_name": "Wednesday",
+      "overview": "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree of the town citizens, and solve the supernatural mystery that affected her family 25 years ago — all while navigating her new relationships.",
+      "poster_path": "/jeGtaMwGxPmQN5xM4ClnwPQcNQz.jpg",
+      "media_type": "tv",
+      "genre_ids": [
+        10765,
+        9648,
+        35
+      ],
+      "popularity": 9325.749,
+      "first_air_date": "2022-11-23",
+      "vote_average": 8.797,
+      "vote_count": 2028,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/53BC9F2tpZnsGno2cLhzvGprDYS.jpg",
+      "id": 736526,
+      "title": "Troll",
+      "original_language": "no",
+      "original_title": "Troll",
+      "overview": "Deep inside the mountain of Dovre, something gigantic awakens after being trapped for a thousand years. Destroying everything in its path, the creature is fast approaching the capital of Norway. But how do you stop something you thought only existed in Norwegian folklore?",
+      "poster_path": "/9z4jRr43JdtU66P0iy8h18OyLql.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        14,
+        28,
+        12
+      ],
+      "popularity": 1101.705,
+      "release_date": "2022-12-01",
+      "video": false,
+      "vote_average": 6.9,
+      "vote_count": 359
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dGOhplPZTL0SKyb0ocTFBHIuKUC.jpg",
+      "id": 68507,
+      "name": "His Dark Materials",
+      "original_language": "en",
+      "original_name": "His Dark Materials",
+      "overview": "Lyra is an orphan who lives in a parallel universe in which science, theology and magic are entwined. Her search for a kidnapped friend uncovers a sinister plot involving stolen children, and turns into a quest to understand a mysterious phenomenon called Dust. She is later joined on her journey by Will, a boy who possesses a knife that can cut windows between worlds. As she learns the truth about her parents and her prophesied destiny, the two young people are caught up in a war against celestial powers that ranges across many worlds.",
+      "poster_path": "/1ljcoM9hFNiXpcoevZQwwc7oCYT.jpg",
+      "media_type": "tv",
+      "genre_ids": [
+        10765,
+        18
+      ],
+      "popularity": 214.889,
+      "first_air_date": "2019-11-03",
+      "vote_average": 8.0,
+      "vote_count": 1197,
+      "origin_country": [
+        "GB"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5tb7RjF0OAAaiGDUXsuedvhoGqV.jpg",
+      "id": 837881,
+      "title": "She Said",
+      "original_language": "en",
+      "original_title": "She Said",
+      "overview": "New York Times reporters Megan Twohey and Jodi Kantor break one of the most important stories in a generation — a story that helped launch the #MeToo movement and shattered decades of silence around the subject of sexual assault in Hollywood.",
+      "poster_path": "/b2g0XtMU4zH2URSkx62n1aWTXTV.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        18,
+        36
+      ],
+      "popularity": 36.422,
+      "release_date": "2022-11-17",
+      "video": false,
+      "vote_average": 7.521,
+      "vote_count": 47
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bQXAqRx2Fgc46uCVWgoPz5L5Dtr.jpg",
+      "id": 436270,
+      "title": "Black Adam",
+      "original_language": "en",
+      "original_title": "Black Adam",
+      "overview": "Nearly 5,000 years after he was bestowed with the almighty powers of the Egyptian gods—and imprisoned just as quickly—Black Adam is freed from his earthly tomb, ready to unleash his unique form of justice on the modern world.",
+      "poster_path": "/pFlaoHTZeyNkG83vxsAJiGzfSsa.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        28,
+        14,
+        878
+      ],
+      "popularity": 6579.615,
+      "release_date": "2022-10-19",
+      "video": false,
+      "vote_average": 7.3,
+      "vote_count": 2523
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/8ybdSPM1AutUK48gmMPOfu8TcyB.jpg",
+      "id": 518896,
+      "title": "Warriors of Future",
+      "original_language": "zh",
+      "original_title": "明日戰記",
+      "overview": "When a meteor carrying a destructive plant strikes the world, a suicide squad is given hours to save their post-apocalyptic city from total collapse.",
+      "poster_path": "/2l9LbxBSkJseoxYcIJjclnmxyq.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        18,
+        28,
+        878
+      ],
+      "popularity": 268.183,
+      "release_date": "2022-08-05",
+      "video": false,
+      "vote_average": 7.4,
+      "vote_count": 123
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wMNY6tU9WOUeAMRfqbCYwceOl9u.jpg",
+      "id": 1001865,
+      "title": "Scrooge: A Christmas Carol",
+      "original_language": "en",
+      "original_title": "Scrooge: A Christmas Carol",
+      "overview": "On a cold Christmas Eve, selfish miser Ebenezer Scrooge has one night left to face his past — and change the future — before time runs out.",
+      "poster_path": "/nOrnzHn9SCF6JTXfX02eSPyAAXL.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        16,
+        10751,
+        14,
+        18
+      ],
+      "popularity": 90.923,
+      "release_date": "2022-11-18",
+      "video": false,
+      "vote_average": 7.556,
+      "vote_count": 45
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/g0k07sJbocIpQI1OZEt3I20B1TZ.jpg",
+      "id": 1045944,
+      "title": "The Boss Baby: Christmas Bonus",
+      "original_language": "en",
+      "original_title": "The Boss Baby: Christmas Bonus",
+      "overview": "Christmas Eve takes a twisty turn when the Boss Baby accidentally swaps places with one of Santa's elves and gets stranded at the North Pole.",
+      "poster_path": "/iMmMxF6f2OonUrXrHKBLSYAhXly.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        16,
+        10751,
+        12
+      ],
+      "popularity": 68.585,
+      "release_date": "2022-12-06",
+      "video": false,
+      "vote_average": 7.0,
+      "vote_count": 2
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1dtc6cfrMcJFeaiMPHCGWm6zU0N.jpg",
+      "id": 814338,
+      "title": "Lady Chatterley's Lover",
+      "original_language": "en",
+      "original_title": "Lady Chatterley's Lover",
+      "overview": "Unhappily married aristocrat Lady Chatterley begins a torrid affair — and falls deeply in love — with the gamekeeper on her husband's country estate.",
+      "poster_path": "/aSgl2DxPG3DuQXoaHr500KeULmT.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        10749,
+        18
+      ],
+      "popularity": 81.537,
+      "release_date": "2022-09-02",
+      "video": false,
+      "vote_average": 6.93,
+      "vote_count": 50
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/198vrF8k7mfQ4FjDJsBmdQcaiyq.jpg",
+      "id": 76600,
+      "title": "Avatar: The Way of Water",
+      "original_language": "en",
+      "original_title": "Avatar: The Way of Water",
+      "overview": "Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.",
+      "poster_path": "/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        878,
+        28,
+        12
+      ],
+      "popularity": 771.137,
+      "release_date": "2022-12-14",
+      "video": false,
+      "vote_average": 10.0,
+      "vote_count": 5
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2M02Mb5IdnIxggSUMXb1KHWyLYz.jpg",
+      "id": 1053080,
+      "title": "Delivery by Christmas",
+      "original_language": "pl",
+      "original_title": "Jeszcze przed Świętami",
+      "overview": "When a spiteful coworker sabotages her deliveries, a courier and a helpful customer must race to return Christmas presents to their intended recipients.",
+      "poster_path": "/49KcmgKAtgC02xQFpDly2svEOxW.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        10749,
+        35
+      ],
+      "popularity": 33.873,
+      "release_date": "2022-12-06",
+      "video": false,
+      "vote_average": 7.3,
+      "vote_count": 3
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/rfnmMYuZ6EKOBvQLp2wqP21v7sI.jpg",
+      "id": 774752,
+      "title": "The Guardians of the Galaxy Holiday Special",
+      "original_language": "en",
+      "original_title": "The Guardians of the Galaxy Holiday Special",
+      "overview": "On a mission to make Christmas unforgettable for Quill, the Guardians head to Earth in search of the perfect present.",
+      "poster_path": "/8dqXyslZ2hv49Oiob9UjlGSHSTR.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        35,
+        878,
+        12
+      ],
+      "popularity": 1329.347,
+      "release_date": "2022-11-25",
+      "video": false,
+      "vote_average": 7.486,
+      "vote_count": 612
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/79PcXPpbDWql74h8Y00mNwbYMbS.jpg",
+      "id": 664469,
+      "title": "Amsterdam",
+      "original_language": "en",
+      "original_title": "Amsterdam",
+      "overview": "In the 1930s, three friends—a doctor, a nurse, and an attorney—witness a murder, become suspects themselves and uncover one of the most outrageous plots in North American history.",
+      "poster_path": "/6sJcVzGCwrDCBMV0DU6eRzA2UxM.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        80,
+        35,
+        36,
+        9648,
+        53
+      ],
+      "popularity": 145.452,
+      "release_date": "2022-09-27",
+      "video": false,
+      "vote_average": 6.159,
+      "vote_count": 424
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/hIZFG7MK4leU4axRFKJWqrjhmxZ.jpg",
+      "id": 95403,
+      "name": "The Peripheral",
+      "original_language": "en",
+      "original_name": "The Peripheral",
+      "overview": "Stuck in a small Appalachian town, a young woman’s only escape from the daily grind is playing advanced video games. She is such a good player that a company sends her a new video game system to test…but it has a surprise in store. It unlocks all of her dreams of finding a purpose, romance, and glamour in what seems like a game…but it also puts her and her family in real danger.",
+      "poster_path": "/ccBe5BVeibdBEQU7l6P6BubajWV.jpg",
+      "media_type": "tv",
+      "genre_ids": [
+        10765,
+        18
+      ],
+      "popularity": 971.039,
+      "first_air_date": "2022-10-20",
+      "vote_average": 8.144,
+      "vote_count": 376,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/93SxdkiR3gBcbG5FxIt0DCBttul.jpg",
+      "id": 111837,
+      "name": "Willow",
+      "original_language": "en",
+      "original_name": "Willow",
+      "overview": "Many years after the events of the original film, legendary sorcerer Willow leads a group of misfit heroes on a dangerous rescue mission through a world beyond their wildest imaginations.",
+      "poster_path": "/jhdSPDlhswjN1r6O0pGP3ZvQgU8.jpg",
+      "media_type": "tv",
+      "genre_ids": [
+        10765,
+        10759,
+        18
+      ],
+      "popularity": 766.36,
+      "first_air_date": "2022-11-30",
+      "vote_average": 6.1,
+      "vote_count": 36,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/94QHrTXnxdmIyXWGUpOPe7PU8DL.jpg",
+      "id": 897192,
+      "title": "Diary of a Wimpy Kid: Rodrick Rules",
+      "original_language": "en",
+      "original_title": "Diary of a Wimpy Kid: Rodrick Rules",
+      "overview": "A new school year, his brother Rodrick teases him over and over and over and over again. Will Greg manage to get along with him? Or will a secret ruin everything?",
+      "poster_path": "/iW6ixzkrvdrcxk0umiLZMtlSl9L.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        16,
+        35,
+        10751
+      ],
+      "popularity": 257.755,
+      "release_date": "2022-12-02",
+      "video": false,
+      "vote_average": 6.7,
+      "vote_count": 15
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/xDMIl84Qo5Tsu62c9DGWhmPI67A.jpg",
+      "id": 505642,
+      "title": "Black Panther: Wakanda Forever",
+      "original_language": "en",
+      "original_title": "Black Panther: Wakanda Forever",
+      "overview": "Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’Challa’s death. As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda.",
+      "poster_path": "/ps2oKfhY6DL3alynlSqY97gHSsg.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "popularity": 1798.687,
+      "release_date": "2022-11-09",
+      "video": false,
+      "vote_average": 7.536,
+      "vote_count": 1217
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5DUMPBSnHOZsbBv81GFXZXvDpo6.jpg",
+      "id": 114410,
+      "name": "Chainsaw Man",
+      "original_language": "ja",
+      "original_name": "チェンソーマン",
+      "overview": "Denji has a simple dream—to live a happy and peaceful life, spending time with a girl he likes. This is a far cry from reality, however, as Denji is forced by the yakuza into killing devils in order to pay off his crushing debts. Using his pet devil Pochita as a weapon, he is ready to do anything for a bit of cash.",
+      "poster_path": "/npdB6eFzizki0WaZ1OvKcJrWe97.jpg",
+      "media_type": "tv",
+      "genre_ids": [
+        16,
+        10759,
+        10765,
+        35
+      ],
+      "popularity": 1392.121,
+      "first_air_date": "2022-10-12",
+      "vote_average": 8.612,
+      "vote_count": 372,
+      "origin_country": [
+        "JP"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/83IYtUhc7Vs8XYi5UYc2lUKuyMo.jpg",
+      "id": 873126,
+      "title": "My Name Is Vendetta",
+      "original_language": "it",
+      "original_title": "Il mio nome è vendetta",
+      "overview": "After old enemies kill his family, a former mafia enforcer and his feisty daughter flee to Milan, where they hide out while plotting their revenge.",
+      "poster_path": "/7l3war94J4tRyWUiLAGokr3ViF2.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        28,
+        12,
+        80,
+        9648,
+        53
+      ],
+      "popularity": 279.478,
+      "release_date": "2022-11-30",
+      "video": false,
+      "vote_average": 7.0,
+      "vote_count": 95
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/6mEYUYdkKoVCMeYf3rTFj0L1uyv.jpg",
+      "id": 899112,
+      "title": "Violent Night",
+      "original_language": "en",
+      "original_title": "Violent Night",
+      "overview": "When a team of mercenaries breaks into a wealthy family compound on Christmas Eve, taking everyone inside hostage, the team isn’t prepared for a surprise combatant: Santa Claus is on the grounds, and he’s about to show why this Nick is no saint.",
+      "poster_path": "/1CHp8QQjGwqWaPZWjzcRidlt5Xs.jpg",
+      "media_type": "movie",
+      "genre_ids": [
+        28,
+        35,
+        80,
+        53
+      ],
+      "popularity": 403.329,
+      "release_date": "2022-11-30",
+      "video": false,
+      "vote_average": 7.753,
+      "vote_count": 73
+    }
+  ],
+  "total_pages": 1000,
+  "total_results": 20000
+}

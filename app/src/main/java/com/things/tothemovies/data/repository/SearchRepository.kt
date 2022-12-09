@@ -15,17 +15,18 @@ class SearchRepository
     private val api: TmdbApi,
     private val watchlistDao: WatchlistDao
 ) {
-
     fun getResults(query: String, watchlistMode: Boolean): Flow<PagingData<Show>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = false,
-                initialLoadSize = 1
             ),
             pagingSourceFactory = {
-                ResultPagingSource(api, watchlistDao, query, watchlistMode)
-            }, initialKey = 1
+                if (watchlistMode)
+                    watchlistDao.findByTitle(query)
+                else
+                    ResultPagingSource(api, query)
+            }
         ).flow
     }
 }

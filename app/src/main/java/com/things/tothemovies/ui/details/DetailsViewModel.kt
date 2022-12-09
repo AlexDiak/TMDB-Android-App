@@ -7,17 +7,12 @@ import com.things.tothemovies.data.local.model.Show
 import com.things.tothemovies.data.remote.model.ApiDetails
 import com.things.tothemovies.data.remote.model.ApiVideos
 import com.things.tothemovies.data.repository.DetailsRepository
-import com.things.tothemovies.utils.MOVIE
+import com.things.tothemovies.utils.ID
 import com.things.tothemovies.utils.Resource
-import com.things.tothemovies.utils.TV_SHOW
-import com.things.tothemovies.utils.UiText
+import com.things.tothemovies.utils.TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,100 +22,79 @@ class DetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<ApiDetails?>(null)
+    private val _state = MutableStateFlow(DetailsScreenState())
     val state = _state.asStateFlow()
 
-    private val _stateVideos = MutableStateFlow<ApiVideos?>(null)
-    val stateVideos = _stateVideos.asStateFlow()
+    private val _details = MutableStateFlow<ApiDetails?>(null)
+    private val details = _details.asStateFlow()
+
+    private val _videos = MutableStateFlow<ApiVideos?>(null)
+    private val videos = _videos.asStateFlow()
 
     private val _showExists = MutableStateFlow(false)
     val showExists = _showExists.asStateFlow()
 
-    private val _eventFlow = Channel<UiText>()
-    val eventFlow = _eventFlow.receiveAsFlow()
-
-    private var remoteSearchJob: Job = Job()
-
     init {
-        val type = checkNotNull(savedStateHandle["type"])
-        val id = checkNotNull(savedStateHandle["id"]).toString().toInt()
-        when (type) {
-            MOVIE -> {
-                id.let {
-                    getMovieDetails(it)
-                    getMovieVideos(it)
-                }
+        details.combine(videos) { details, videos ->
+            _state.update {
+                state.value.copy(
+                    show = details,
+                    videos = videos,
+                    isLoading = false
+                )
             }
-            TV_SHOW -> {
-                id.let {
-                    getTvShowDetails(it)
-                    getTvShowVideos(it)
-                }
-            }
-        }
+        }.launchIn(viewModelScope)
 
-        id.let { showExists(it) }
+        val type = checkNotNull(savedStateHandle[TYPE]).toString()
+        val id = checkNotNull(savedStateHandle[ID]).toString()
+        getShowDetails(id, type)
+        getShowVideos(id, type)
+        showExists(id.toInt())
     }
 
-    private fun getMovieDetails(id: Int) {
-        remoteSearchJob = viewModelScope.launch {
+    private fun getShowDetails(id: String, type: String) {
+        viewModelScope.launch {
 
-            when (val result = repository.getMovieDetails(id)) {
-                is Resource.Success -> {
-                    _state.emit(result.data)
-                }
-                is Resource.Error -> {
-                    _eventFlow.send(
-                        result.uiText ?: UiText.unknownError()
-                    )
-                }
+            _state.update {
+                state.value.copy(
+                    isLoading = true
+                )
             }
-        }
-    }
 
-    private fun getMovieVideos(id: Int) {
-        remoteSearchJob = viewModelScope.launch {
-
-            when (val result = repository.getMovieVideos(id)) {
-                is Resource.Success -> {
-                    _stateVideos.emit(result.data)
-                }
-                is Resource.Error -> {
-                    _eventFlow.send(
-                        result.uiText ?: UiText.unknownError()
-                    )
+            repository.getShowDetails(id, type).collect { resource ->
+                when (resource) {
+                    is Resource.Success -> _details.update { resource.data }
+                    is Resource.Error -> _state.update {
+                        state.value.copy(
+                            show = null,
+                            isLoading = false,
+                            errorMessage = resource.uiText
+                        )
+                    }
                 }
             }
         }
     }
 
-    private fun getTvShowDetails(id: Int) {
-        remoteSearchJob = viewModelScope.launch {
+    private fun getShowVideos(id: String, type: String) {
+        viewModelScope.launch {
 
-            when (val result = repository.getTvShowDetails(id)) {
-                is Resource.Success -> {
-                    _state.emit(result.data)
-                }
-                is Resource.Error -> {
-                    _eventFlow.send(
-                        result.uiText ?: UiText.unknownError()
-                    )
-                }
+            _state.update {
+                state.value.copy(
+                    isLoading = true
+                )
             }
-        }
-    }
 
-    private fun getTvShowVideos(id: Int) {
-        remoteSearchJob = viewModelScope.launch {
-
-            when (val result = repository.getTvShowVideos(id)) {
-                is Resource.Success -> {
-                    _stateVideos.emit(result.data)
-                }
-                is Resource.Error -> {
-                    _eventFlow.send(
-                        result.uiText ?: UiText.unknownError()
-                    )
+            repository.getShowVideos(id, type).collect { resource ->
+                when (resource) {
+                    is Resource.Success -> _videos.update { resource.data }
+                    is Resource.Error -> _state.update {
+                        state.value.copy(
+                            videos = null,
+                            isLoading = false,
+                            errorMessage = resource.uiText
+                        )
+                    }
                 }
             }
         }

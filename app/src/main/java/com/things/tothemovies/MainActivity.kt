@@ -4,11 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -44,7 +43,9 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun BottomNavBar() {
         val navController = rememberNavController()
-        androidx.compose.material3.Scaffold(
+        val snackbarHostState = remember { SnackbarHostState() }
+        Scaffold(
+            snackbarHost = { SnackbarHost(snackbarHostState) },
             bottomBar = {
                 NavigationBar {
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -52,14 +53,14 @@ class MainActivity : ComponentActivity() {
                     TOP_LEVEL_DESTINATIONS.forEach { screen ->
                         NavigationBarItem(
                             icon = {
-                                androidx.compose.material3.Icon(
+                                Icon(
                                     imageVector = screen.selectedIcon,
                                     contentDescription = stringResource(
                                         id = screen.iconTextId
                                     )
                                 )
                             },
-                            label = { androidx.compose.material3.Text(stringResource(screen.iconTextId)) },
+                            label = { Text(stringResource(screen.iconTextId)) },
                             selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                             onClick = {
                                 navController.navigate(screen.route) {
@@ -75,7 +76,11 @@ class MainActivity : ComponentActivity() {
                 }
             }
         ) { innerPadding ->
-            MyAppNavHost(modifier = Modifier.padding(innerPadding), navController = navController)
+            MyAppNavHost(
+                modifier = Modifier.padding(innerPadding),
+                navController = navController,
+                snackbarHostState
+            )
         }
     }
 
@@ -83,6 +88,7 @@ class MainActivity : ComponentActivity() {
     fun MyAppNavHost(
         modifier: Modifier = Modifier,
         navController: NavHostController = rememberNavController(),
+        snackbarHostState: SnackbarHostState,
         startDestination: String = "search"
     ) {
         NavHost(
@@ -94,7 +100,8 @@ class MainActivity : ComponentActivity() {
                 val viewModel = hiltViewModel<SearchViewModel>()
                 SearchScreen(
                     viewModel = viewModel,
-                    navController = navController
+                    navController = navController,
+                    snackbarHostState = snackbarHostState
                 )
             }
             composable("watchlist") {
@@ -102,6 +109,7 @@ class MainActivity : ComponentActivity() {
                 SearchScreen(
                     viewModel = viewModel,
                     navController = navController,
+                    snackbarHostState = snackbarHostState,
                     selected = true
                 )
             }
@@ -110,6 +118,7 @@ class MainActivity : ComponentActivity() {
                 DetailsScreen(
                     viewModel = viewModel,
                     navController = navController,
+                    snackbarHostState = snackbarHostState,
                     type = backStackEntry.arguments?.getString("type") ?: ""
                 )
             }
